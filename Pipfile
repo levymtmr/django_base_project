@@ -1,0 +1,14 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+jedi = "==0.17.2"
+ipython = "*"
+
+[packages]
+django = "*"
+
+[requires]
+python_version = "3.8"

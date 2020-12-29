@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+
+  web:
+    build:
+      context: .
+      target: django-dev
+      dockerfile: ./docker/Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/opt/app
+    ports:
+      - "8000:8000"

@@ -1,5 +1,11 @@
 FROM python:3.8-alpine AS django-dev
 
+RUN apk update && \
+    apk add \
+    postgresql-dev \
+    musl-dev \
+    gcc
+
 ENV PYTHONUNBUFFERED 1
 
 COPY . /opt/app

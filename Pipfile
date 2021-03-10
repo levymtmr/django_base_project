@@ -6,6 +6,9 @@ verify_ssl = true
 [dev-packages]
 jedi = "==0.17.2"
 ipython = "*"
+pytest = "*"
+pytest-django = "*"
+factory-boy = "*"
 
 [packages]
 django = "*"

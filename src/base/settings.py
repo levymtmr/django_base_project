@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Project apps
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -69,17 +72,26 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'base.wsgi.application'
 
+AUTH_USER_MODEL = 'accounts.UserAccount'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.getenv('POSTGRES_NAME'),
+#         'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+#         'USER': os.getenv('POSTGRES_USER'),
+#         'PORT': os.getenv('POSTGRES_PORT'),
+#         'HOST': os.getenv('POSTGRES_HOST')
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        'USER': os.getenv('POSTGRES_USER'),
-        'PORT': os.getenv('POSTGRES_PORT'),
-        'HOST': os.getenv('POSTGRES_HOST')
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
     }
 }
 

@@ -1,10 +1,13 @@
 version: "3.9"
 
 x-environment: &x-environment
+  POSTGRES_USER: ${POSTGRES_USER}
   POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-  POSTGRES_PORT: ${POSTGRES_PORT}
-  POSTGRES_HOST: ${POSTGRES_HOST}
+  POSTGRES_DB: ${POSTGRES_DB}
+  POSTGRES_NAME: ${POSTGRES_NAME}
   SECRET_KEY: ${SECRET_KEY}
+  POSTGRES_HOST: ${POSTGRES_HOST}
+  POSTGRES_PORT: ${POSTGRES_PORT}
 
 volumes:
   postgres_data: {}
@@ -12,6 +15,7 @@ volumes:
 services:
   postgres:
     image: postgres:12-alpine
+    restart: always
     environment:
       <<: *x-environment
     volumes:
@@ -26,11 +30,13 @@ services:
       dockerfile: ./docker/Dockerfile
     environment:
       <<: *x-environment
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/opt/app
+    command: ["runserver", "0.0.0.0:8000"]
     depends_on: 
       - postgres
+    volumes: 
+      - .:/opt/app
+    stdin_open: true
+    tty: true
     ports:
       - "8000:8000"
     

@@ -14,4 +14,11 @@ RUN pip install -U pip \
     && cd /opt/app \
     && pipenv install --system --deploy --dev
 
-WORKDIR /opt/app/src
+WORKDIR /opt/app/
+
+RUN cp /opt/app/docker/django-entrypoint.sh /docker-entrypoint.sh \
+    && chmod +x /docker-entrypoint.sh
+
+EXPOSE 8000
+
+ENTRYPOINT [ "/docker-entrypoint.sh" ]
